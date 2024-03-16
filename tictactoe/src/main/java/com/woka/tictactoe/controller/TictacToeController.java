@@ -35,7 +35,7 @@ public class TictacToeController {
             board= new char[size][size];
             boardSize=size;
         }
-
+        currentPlayer = 'X'; 
         model.addAttribute("board", board);
         return "index";   
         
