@@ -4,6 +4,12 @@
 <head>
 </head>
 <body>
- 
+ <table></table>
+ <form th:action="@{/generate-board}" method="post">
+    <input type="text" name="row" placeholder="Row">
+    <input type="text" name="col" placeholder="Column">
+    <button type="submit">Submit</button>
+</form>
+
 </body>
 </html>
