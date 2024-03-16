@@ -32,11 +32,23 @@ public class TictacToeController {
 
     @PostMapping("/generate-board")
     public String generateBoard(@RequestParam int size, Model model) {
-        board=tacToeService.generateBoard(size); 
+        if (size <= 3){
+            board = new char[3][3];
+        }else{
+            board= new char[size][size];
+        } 
         model.addAttribute("board", board);
         return "index";   
         
     }
+
+    @PostMapping("/move-play")
+    public String movePlay(@RequestParam int col, @RequestParam int row) {
+        //TODO: process POST request
+        
+        return "";
+    }
+    
     
 
  

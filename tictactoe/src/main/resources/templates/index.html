@@ -2,9 +2,26 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
+    
+    <style>
+        .cell {
+            width: 50px;
+            height: 50px;
+            border: 1px solid black;
+            text-align: center;
+            font-size: 24px;
+        }
+    </style>
 </head>
 <body>
- <table></table>
+ <table>
+    <h1>Tic Tac Toe FWD</h1>
+    <tr th:each="row, rowStat : ${board}">
+        <td th:each="cell, colStat : ${row}">
+            <div class="cell" th:text="${cell}"></div>
+        </td>
+    </tr>
+ </table>
  <form th:action="@{/generate-board}" method="post">
     <input type="text" name="size" placeholder="Size">
     <button type="submit">Submit</button>
