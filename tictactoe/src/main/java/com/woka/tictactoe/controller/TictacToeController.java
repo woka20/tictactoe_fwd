@@ -18,7 +18,7 @@ public class TictacToeController {
     
     private char[][] board;
     private char currentPlayer;
-    
+    private int boardSize;
 
 
     @GetMapping("/")
@@ -30,9 +30,12 @@ public class TictacToeController {
     public String generateBoard(@RequestParam int size, Model model) {
         if (size <= 3){
             board = new char[3][3];
+            boardSize=3;
         }else{
             board= new char[size][size];
-        } 
+            boardSize=size;
+        }
+
         model.addAttribute("board", board);
         return "index";   
         
