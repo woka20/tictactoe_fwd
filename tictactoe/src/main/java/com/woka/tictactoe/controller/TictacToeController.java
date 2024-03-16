@@ -27,7 +27,6 @@ public class TictacToeController {
 
     @GetMapping("/")
     public String home(Model model) {
-        model.addAttribute("board", board);
         return "index";
     }
 
