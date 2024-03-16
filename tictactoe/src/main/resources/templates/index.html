@@ -18,10 +18,41 @@
     <h1>Tic Tac Toe FWD</h1>
     <tr th:each="row, rowStat : ${board}">
         <td th:each="cell, colStat : ${row}">
-            <div class="cell" th:text="${cell}"></div>
+            <div class="cell" th:text="${cell}" th:onclick="'javascript:makeMove(' + ${rowStat.index} + ',' + ${colStat.index} + ');'"></div>
         </td>
     </tr>
  </table>
+ <div id="message" th:text="${message}" style="display:none;"></div>
+ 
+ <script th:inline="javascript">
+
+    function makeMove(row, col) {
+        // Send an AJAX request to the /move endpoint with the selected row and column
+        var xhr = new XMLHttpRequest();
+        xhr.open('POST', '/move-play?row=' + row + '&col=' + col, true);
+        xhr.onload = function () {
+            if (xhr.status === 200) {
+                // Update the board with the response
+               
+                document.querySelector('body').innerHTML = xhr.responseText;
+                /*var message = [[${message}]];*/
+                var messageDiv = document.getElementById('message');
+                if (messageDiv.innerText.length > 0) {
+               
+                    alert(messageDiv.innerText);
+                }
+                
+              
+                
+            }
+        };
+        xhr.send();
+
+       
+    }
+ 
+</script>
+
  <form th:action="@{/generate-board}" method="post">
     <input type="text" name="size" placeholder="Size">
     <button type="submit">Submit</button>

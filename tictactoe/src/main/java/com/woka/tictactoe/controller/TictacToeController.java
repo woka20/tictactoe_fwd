@@ -42,10 +42,23 @@ public class TictacToeController {
     }
 
     @PostMapping("/move-play")
-    public String movePlay(@RequestParam int col, @RequestParam int row) {
-        //TODO: process POST request
-        
-        return "";
+    public String movePlay(@RequestParam int col, @RequestParam int row, Model model) {
+        if (tacToeService.checkValidMove(col, row, board)) {
+            board[row][col] = currentPlayer;
+            if (tacToeService.checkWin(currentPlayer, boardSize, board)) {
+                model.addAttribute("message", "Player " + currentPlayer + " wins!");
+                // initializeBoard();
+                board= new char[boardSize][boardSize];
+            } else if (tacToeService.checkDraw(boardSize, board)) {
+                model.addAttribute("message", "It's a draw!");
+                // initializeBoard();
+                board= new char[boardSize][boardSize];
+            } else {
+                currentPlayer = (currentPlayer == 'X') ? 'O' : 'X';
+            }
+        }
+        model.addAttribute("board", board);
+        return "index";
     }
     
     
