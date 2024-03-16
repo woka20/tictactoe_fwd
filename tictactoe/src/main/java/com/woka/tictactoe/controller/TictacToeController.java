@@ -9,10 +9,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.woka.tictactoe.service.TicTacToeService;
 
-import org.springframework.web.bind.annotation.RequestBody;
-
-
-
 
 @Controller
 public class TictacToeController {
@@ -22,7 +18,7 @@ public class TictacToeController {
     
     private char[][] board;
     private char currentPlayer;
-    private int boardSize;
+    
 
 
     @GetMapping("/")
